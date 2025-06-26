@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LIKT - Sistema de Funis Automático</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(0, 255, 255, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(0, 255, 255, 0.6); }
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #00ffff, #ff00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 2s infinite;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #00ffff;
+            transform: translateY(-2px);
+        }
+
+        .login-btn {
+            background: linear-gradient(45deg, #00ffff, #0066ff);
+            color: white;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.3);
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, #ffffff, #00ffff, #ff00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e53);
+            color: white;
+            padding: 1.2rem 3rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255, 107, 107, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 1.2rem 3rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-decoration: none;
+            display: inline-block;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: #00ffff;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 255, 255, 0.2);
+        }
+
+        .features {
+            padding: 8rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 4rem;
+            background: linear-gradient(45deg, #ffffff, #00ffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto
